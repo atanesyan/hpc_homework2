@@ -19,9 +19,11 @@ typedef struct {
 
 void* count_sum(void* arg) {
   ThreadData* data = (ThreadData*)arg;
+  long res = 0;
   for (int i = data->start; i < data->end; ++i) {
-    data->res += data->arr[i];
+    res += data->arr[i];
   }
+  data->res = res;
 
   return NULL;
 }
