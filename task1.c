@@ -5,7 +5,7 @@
 #define NUM_THREADS 3
 
 void* thread_print(void* arg) {
-  printf("Thread [%d] is running\n", *(int*)arg);
+  printf("Thread [%d] is running\n", (int)(long)arg);
   return NULL;
 }
 
@@ -13,7 +13,7 @@ int main() {
   pthread_t threads[NUM_THREADS];
     
   for (int i = 0; i < NUM_THREADS; ++i) {
-    if (pthread_create(&threads[i], NULL, thread_print, (void*)&i) != 0) {
+    if (pthread_create(&threads[i], NULL, thread_print, (void*)(long)i) != 0) {
       perror("Failed to create a thread\n");
       exit(EXIT_FAILURE);
     }
